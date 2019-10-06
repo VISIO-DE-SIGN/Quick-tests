@@ -23,5 +23,8 @@ for i = 1:res_v
     end
 end
 
+%normalizamos la imagen
+diff = diff / max(diff,[],'all');
+
 end
 
