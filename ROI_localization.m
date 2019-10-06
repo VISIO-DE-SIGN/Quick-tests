@@ -1,5 +1,6 @@
-
-I = imread('camera00/00/image.000058.jp2');
+dataset_path = getenv('Dataset_path');
+image = strcat(dataset_path, "\camera00\00\image.000058.jp2");
+I = imread(image);
 imshow(I)
 
 [c,r,dim] = size(I)
