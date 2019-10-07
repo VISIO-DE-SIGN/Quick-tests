@@ -1,5 +1,5 @@
 dataset_path = getenv('Dataset_path');
-image = strcat(dataset_path, "\camera00\00\image.000060.jp2");
+image = strcat(dataset_path, "\camera00\00\image.000072.jp2");  %191
 I = imread(image);
 %imshow(I)
 
@@ -22,7 +22,8 @@ diff_b = getBlobImage(Ismall_B);
 diff_r = getBlobImage(Ismall_R);
 diff_g = getBlobImage(Ismall_G);
 
-
+%Chanels
+%{
 figure
 imshow(diff_b,'InitialMagnification',2000)
 title('blue chanel');
@@ -35,7 +36,22 @@ figure
 imshow(diff_g,'InitialMagnification',2000)
 title('green chanel');
 
-figure
+%}
+
+%figure
 only_blue = diff_b - diff_r/2 - diff_g/2;
-imshow(only_blue,'InitialMagnification',2000)
-title('+B-R-G');
+only_blue = only_blue / max(only_blue,[],'all');
+%imshow(only_blue,'InitialMagnification',2000)
+%title('only blue');
+
+%figure
+only_red = diff_r - diff_b/2 - diff_g/2;
+only_red = only_red / max(only_red,[],'all');
+%imshow(only_red,'InitialMagnification',2000)
+%title('only red');
+
+%figure
+only_green = diff_g - diff_b/2 - diff_r/2;
+only_green = only_green / max(only_green,[],'all');
+%imshow(only_green,'InitialMagnification',2000)
+%title('only green');
