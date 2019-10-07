@@ -55,3 +55,16 @@ only_green = diff_g - diff_b/2 - diff_r/2;
 only_green = only_green / max(only_green,[],'all');
 %imshow(only_green,'InitialMagnification',2000)
 %title('only green');
+
+[M,N] = max(only_blue);
+[M_,col] = max(M);
+row = N(col);
+
+margin = 0;
+x = (col-1-margin) * pps_h;
+y = (row-1-margin) * pps_h;
+w = 1 * (1 + margin) * pps_h;
+h = 1 * (1 + margin) * pps_h;
+imshow(I)
+rectangle('Position',[x,y,w,h],'LineWidth',3,'EdgeColor','r')
+
