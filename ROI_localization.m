@@ -65,10 +65,11 @@ blue_bin = imbinarize(only_blue,0.2);
 row = N(col);
 
 margin = 0;
-x = (col-1-margin) * pps_h;
-y = (row-1-margin) * pps_h;
-w = 1 * (1 + margin) * pps_h;
-h = 1 * (1 + margin) * pps_h;
+x = (col-1-margin) * pps_h -20;
+y = (row-1-margin) * pps_h -20;
+w = 1 * (1 + margin) * pps_h + 40;
+h = 1 * (1 + margin) * pps_h + 40;
+figure
 imshow(I)
 rectangle('Position',[x,y,w,h],'LineWidth',3,'EdgeColor','r')
 
