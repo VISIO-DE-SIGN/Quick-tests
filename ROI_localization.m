@@ -1,7 +1,25 @@
 dataset_path = getenv('Dataset_path');
-image = strcat(dataset_path, "\camera00\00\image.000072.jp2");  %191 %60
+image = strcat(dataset_path, "\camera00\00\image.000191.jp2");  %191 %60
 I = imread(image);
-%imshow(I)
+imshow(I)
+
+%only blue pixels
+B = I(:,:,3) - I(:,:,1) - I(:,:,2);
+R = I(:,:,1) - I(:,:,2) - I(:,:,3);
+%G = I(:,:,2) - I(:,:,1) - I(:,:,3);
+figure
+imshow(B)
+figure
+imshow(R)
+blue = imbinarize(B);
+caract = regionprops(blue,'all');
+
+imshow(blue)
+for i = 1:length(caract)
+    if(caract(i).Area>10)
+        rectangle('Position',caract(i).BoundingBox,'EdgeColor','r')
+    end
+end
 
 [c,r,dim] = size(I);
 pps_h = c/20;       %pixels per square horizontal
