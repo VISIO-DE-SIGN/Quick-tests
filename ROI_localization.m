@@ -1,12 +1,12 @@
 dataset_path = getenv('Dataset_path');
-image = strcat(dataset_path, "\camera00\00\image.000072.jp2");  %191
+image = strcat(dataset_path, "\camera00\00\image.000072.jp2");  %191 %60
 I = imread(image);
 %imshow(I)
 
-[c,r,dim] = size(I)
+[c,r,dim] = size(I);
 pps_h = c/20;       %pixels per square horizontal
-res_h = c/pps_h
-res_v = round(r/pps_h)
+res_h = c/pps_h;
+res_v = round(r/pps_h);
 Ismall = imresize(I,[res_h,res_v]);
 %figure
 %imshow(Ismall,'InitialMagnification',2000)
