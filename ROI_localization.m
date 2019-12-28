@@ -73,3 +73,8 @@ figure
 imshow(I)
 rectangle('Position',[x,y,w,h],'LineWidth',3,'EdgeColor','r')
 
+BW = rgb2gray(I);
+imshow(BW)
+[featureVector,hogVisualization] = extractHOGFeatures(BW,'CellSize',[20 20]);
+hold on
+plot(hogVisualization)
