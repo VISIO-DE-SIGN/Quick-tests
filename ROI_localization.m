@@ -56,6 +56,10 @@ only_green = only_green / max(only_green,[],'all');
 %imshow(only_green,'InitialMagnification',2000)
 %title('only green');
 
+blue_bin = imbinarize(only_blue,0.2);
+%figure
+%imshow(blue_bin,'InitialMagnification',2000)
+
 [M,N] = max(only_blue);
 [M_,col] = max(M);
 row = N(col);
