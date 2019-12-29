@@ -1,5 +1,5 @@
 dataset_path = getenv('Dataset_path');
-image = strcat(dataset_path, "\camera00\00\image.000191.jp2");  %191 %60
+image = strcat(dataset_path, "\camera00\00\image.000060.jp2");  %191 %60
 I = imread(image);
 imshow(I)
 
@@ -12,12 +12,20 @@ imshow(B)
 figure
 imshow(R)
 blue = imbinarize(B);
-caract = regionprops(blue,'all');
+red = imbinarize(R);
 
-imshow(blue)
-for i = 1:length(caract)
-    if(caract(i).Area>10)
-        rectangle('Position',caract(i).BoundingBox,'EdgeColor','r')
+caract_red = regionprops(red,'all');
+caract_blue = regionprops(blue,'all');
+
+imshow(I)
+for i = 1:length(caract_red)
+    if(caract_red(i).Area>10)
+        rectangle('Position',caract_red(i).BoundingBox,'EdgeColor','r')
+    end
+end
+for i = 1:length(caract_blue)
+    if(caract_blue(i).Area>10)
+        rectangle('Position',caract_blue(i).BoundingBox,'EdgeColor','b')
     end
 end
 
@@ -96,3 +104,5 @@ imshow(BW)
 [featureVector,hogVisualization] = extractHOGFeatures(BW,'CellSize',[20 20]);
 hold on
 plot(hogVisualization)
+
+
