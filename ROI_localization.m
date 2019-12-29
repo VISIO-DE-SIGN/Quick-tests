@@ -3,14 +3,23 @@ image = strcat(dataset_path, "\camera00\00\image.000060.jp2");  %191 %60
 I = imread(image);
 imshow(I)
 
-%only blue pixels
+%only blue or green pixels
+%method 1
 B = I(:,:,3) - I(:,:,1) - I(:,:,2);
 R = I(:,:,1) - I(:,:,2) - I(:,:,3);
-%G = I(:,:,2) - I(:,:,1) - I(:,:,3);
+
+%method 2
+%B = I(:,:,3) - 1/2 * I(:,:,1) - 1/2 * I(:,:,2);
+%R = I(:,:,1) - 1/2 * I(:,:,2) - 1/2 * I(:,:,3);
 figure
 imshow(B)
 figure
 imshow(R)
+
+%scale dinamic range
+scale_ratio = 255 / max(B(:));
+scaled_blue = B .* scale_ratio;
+
 blue = imbinarize(B);
 red = imbinarize(R);
 
