@@ -31,6 +31,10 @@ red = imbinarize(R);
 blue = imbinarize(B,'adaptive');
 red = imbinarize(R,'adaptive');
 
+% recorte de franja de 2 pixeles
+blue = blue(3:end-2,3:end-2);
+red = red(3:end-2,3:end-2);
+
 figure
 imshow(blue)
 figure
