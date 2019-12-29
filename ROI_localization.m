@@ -1,5 +1,5 @@
 dataset_path = getenv('Dataset_path');
-image = strcat(dataset_path, "\camera00\00\image.000060.jp2");  %191 %60
+image = strcat(dataset_path, "\camera00\00\image.000060.jp2");  %191 %60 %4766
 I = imread(image);
 imshow(I)
 
@@ -9,8 +9,9 @@ B = I(:,:,3) - I(:,:,1) - I(:,:,2);
 R = I(:,:,1) - I(:,:,2) - I(:,:,3);
 
 %method 2
-%B = I(:,:,3) - 1/2 * I(:,:,1) - 1/2 * I(:,:,2);
-%R = I(:,:,1) - 1/2 * I(:,:,2) - 1/2 * I(:,:,3);
+B = I(:,:,3) - 1/2 * I(:,:,1) - 1/2 * I(:,:,2);
+R = I(:,:,1) - 1/2 * I(:,:,2) - 1/2 * I(:,:,3);
+
 figure
 imshow(B)
 figure
@@ -18,10 +19,22 @@ imshow(R)
 
 %scale dinamic range
 scale_ratio = 255 / max(B(:));
-scaled_blue = B .* scale_ratio;
+B = B .* scale_ratio;
+
+scale_ratio = 255 / max(R(:));
+R = R .* scale_ratio;
 
 blue = imbinarize(B);
 red = imbinarize(R);
+
+%limite establecido a mano
+blue = imbinarize(B,'adaptive');
+red = imbinarize(R,'adaptive');
+
+figure
+imshow(blue)
+figure
+imshow(red)
 
 caract_red = regionprops(red,'all');
 caract_blue = regionprops(blue,'all');
